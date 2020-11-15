@@ -72,7 +72,9 @@ let webApp =
             choose [
                 route "/" >=> indexHandler "world"
                 routef "/hello/%s" indexHandler
-                route "/mandelbrot" >=> mandelbrotHandler 
+                route "/mandelbrot" >=> mandelbrotHandler
+                // shouldn't go in public source but will tear this down
+                route "/loaderio-bb581c809a74c2b0bdc2598bbc967401" >=> text "loaderio-bb581c809a74c2b0bdc2598bbc967401"
             ]
         setStatusCode 404 >=> text "Not Found" ]
 

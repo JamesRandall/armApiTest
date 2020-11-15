@@ -4,10 +4,7 @@
     <projectFile>simpleapitest.fsproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27f032d5-0b74-4fde-90a6-d2be1923aa2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Program.fs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simpleapitest.fsproj" beforeDir="false" afterPath="$PROJECT_DIR$/simpleapitest.fsproj" afterDir="false" />
-    </list>
+    <list default="true" id="27f032d5-0b74-4fde-90a6-d2be1923aa2a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,8 +15,8 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Program.fs" />
       <option value="$PROJECT_DIR$/Mandelbrot.fs" />
+      <option value="$PROJECT_DIR$/Program.fs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kK1TQhmSDT5O4oVCmoZM5b4y0O" />
@@ -81,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605434477509</updated>
-      <workItem from="1605434489133" duration="3226000" />
+      <workItem from="1605434489133" duration="3802000" />
     </task>
     <servers />
   </component>
