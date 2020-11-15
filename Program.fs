@@ -2,9 +2,11 @@ module simpleapitest.App
 
 open System
 open System.IO
+open FSharp.Control.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Cors.Infrastructure
 open Microsoft.AspNetCore.Hosting
+open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
@@ -44,11 +46,19 @@ module Views =
         [
             partial()
             p [] [ encodedText model.Text ]
+            img [ _src "/mandelbrot" ; _width "1024" ; _height "768" ]
         ] |> layout
 
 // ---------------------------------
 // Web app
 // ---------------------------------
+
+let mandelbrotHandler : HttpHandler =
+    fun (next : HttpFunc) (ctx:HttpContext) ->
+        task {
+            let mandelbrotBytes = Mandelbrot.render 64 -2.1 0.9 -1. 1. 1024 768
+            return! ctx.WriteBytesAsync mandelbrotBytes
+        }
 
 let indexHandler (name : string) =
     let greetings = sprintf "Hello %s, from Giraffe!" name
@@ -62,6 +72,7 @@ let webApp =
             choose [
                 route "/" >=> indexHandler "world"
                 routef "/hello/%s" indexHandler
+                route "/mandelbrot" >=> mandelbrotHandler 
             ]
         setStatusCode 404 >=> text "Not Found" ]
 
