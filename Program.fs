@@ -2,6 +2,7 @@ module simpleapitest.App
 
 open System
 open System.IO
+open System.Threading.Tasks
 open FSharp.Control.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Cors.Infrastructure
@@ -59,6 +60,20 @@ let mandelbrotHandler : HttpHandler =
             let mandelbrotBytes = Mandelbrot.render 64 -2.1 0.9 -1. 1. 1024 768
             return! ctx.WriteBytesAsync mandelbrotBytes
         }
+        
+let random = System.Random()
+
+let asyncWorkload : HttpHandler =
+    fun (next : HttpFunc) (ctx:HttpContext) ->
+        task {
+            let firstBytes = Mandelbrot.render 64 -2.1 0.9 -1. 1. 64 64
+            do! Task.Delay (50 + random.Next(0,50))
+            let secondBytes = Mandelbrot.render 64 -2.1 0.9 -1. 1. 128 128
+            do! Task.Delay (100 + random.Next(0,25))
+            
+            let string = (sprintf "%d %d" firstBytes.Length secondBytes.Length)
+            return! ctx.WriteTextAsync string
+        }
 
 let indexHandler (name : string) =
     let greetings = sprintf "Hello %s, from Giraffe!" name
@@ -73,6 +88,7 @@ let webApp =
                 route "/" >=> indexHandler "world"
                 routef "/hello/%s" indexHandler
                 route "/mandelbrot" >=> mandelbrotHandler
+                route "/async" >=> asyncWorkload
                 // shouldn't go in public source but will tear this down
                 route "/loaderio-bb581c809a74c2b0bdc2598bbc967401.txt" >=> text "loaderio-bb581c809a74c2b0bdc2598bbc967401"
             ]
