@@ -91,6 +91,7 @@ let webApp =
                 route "/async" >=> asyncWorkload
                 // shouldn't go in public source but will tear this down
                 route "/loaderio-bb581c809a74c2b0bdc2598bbc967401.txt" >=> text "loaderio-bb581c809a74c2b0bdc2598bbc967401"
+                route "/loaderio-7e66e1f1715d58e30e096ff1b04eae39.txt" >=> text "loaderio-7e66e1f1715d58e30e096ff1b04eae39"
             ]
         setStatusCode 404 >=> text "Not Found" ]
 
