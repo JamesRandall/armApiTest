@@ -95,6 +95,7 @@ let webApp =
                 route "/loaderio-acb38b8646c69611e30fe2387d135ec8.txt" >=> text "loaderio-acb38b8646c69611e30fe2387d135ec8"
                 route "/loaderio-db50d6564f32f12ed971711f34271f05.txt" >=> text "loaderio-db50d6564f32f12ed971711f34271f05"
                 route "/loaderio-5cd69ded3faee8867a690dbee0da090b.txt" >=> text "loaderio-5cd69ded3faee8867a690dbee0da090b"
+                route "/loaderio-b4fa21abecf61b201ed7ab6b1456eed2.txt" >=> text "loaderio-b4fa21abecf61b201ed7ab6b1456eed2"
             ]
         setStatusCode 404 >=> text "Not Found" ]
 
